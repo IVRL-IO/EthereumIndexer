@@ -52,6 +52,17 @@ namespace eth_index.Controllers
         }
 
         /// <summary>
+        /// Provides Syncing status from Geth RPC
+        /// </summary>
+        /// <returns>Returns null if syncing is false otherwise provides <see cref="SyningResult"/></returns>
+        [HttpGet()]
+        [Route("[controller]/[action]")]
+        public GetBlockByNumberResult GetBlockByNumber(int? BlockId)
+        {
+            return new RPCClient<GetBlockByNumberResult>().ExcuteCall(EthRPCMethods.GetBlockByNumber, new object[] { BlockId != null ? BlockId : "latest", false });
+        }
+
+        /// <summary>
         /// Returns true or false if syncing.
         /// </summary>
         /// <exception cref="EthereumConsensusClientException">Thrown is consensus client is not running</exception>
