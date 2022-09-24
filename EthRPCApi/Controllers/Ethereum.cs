@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using RestSharp;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
+using EthRPCLib;
 
 namespace eth_index.Controllers
 {
@@ -34,29 +35,20 @@ namespace eth_index.Controllers
         /// <returns>Returns null if syncing is false otherwise provides <see cref="SyningResult"/></returns>
         [HttpGet()]
         [Route("[controller]/[action]")]
-        public SyningResult? Syncing()
+        public RPCBaseResponse<SyningResult?>? Syncing()
         {
-            var client = new RestClient(Settings.RcpURL);
-            var request = new RestRequest
-            {
-                Method = Method.Post
-            };
-            request.AddHeader("Content-Type", "application/json");
-            var requestRPC = new RPCBaseRequest
-            {
-                Method = EthRPCMethods.Syncing,
-                Id = 1
-            };
+            return new RPCClient<RPCBaseResponse<SyningResult?>?>().ExcuteCall(EthRPCMethods.Syncing);
+        }
 
-            var body = JsonSerializer.Serialize(requestRPC); ;
-            request.AddParameter("application/json", body, ParameterType.RequestBody);
-            RestResponse response = client.Execute(request);
-            if (response?.Content?.Length != 0 && response.Content.Contains("startingBlock"))
-            {
-                return JsonSerializer.Deserialize<RPCBaseResponse<SyningResult>>(response?.Content)?.Result;
-
-            }
-            return null;
+        /// <summary>
+        /// Provides Syncing status from Geth RPC
+        /// </summary>
+        /// <returns>Returns null if syncing is false otherwise provides <see cref="SyningResult"/></returns>
+        [HttpGet()]
+        [Route("[controller]/[action]")]
+        public BlockNumberResult? BlockNumber()
+        {
+            return new RPCClient<BlockNumberResult?>().ExcuteCall(EthRPCMethods.BlockNumber);
         }
 
         /// <summary>
@@ -69,15 +61,18 @@ namespace eth_index.Controllers
         public bool IsSyncing()
         {
             var sync = this.Syncing();
+            var block = this.BlockNumber();
             // On null we are not sinking
-            if(sync == null) { 
-                return false; 
-            } else
+            if (sync == null) {
+                return false;
+            } else if (block?.Result != "0x0" && sync == null)
             {
-
+                throw new EthereumConsensusClientException();
+            } else if (sync != null) {
+                return true;
             }
 
-            
+
             return false;
         }
     }

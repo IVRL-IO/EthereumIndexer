@@ -6,7 +6,9 @@
     public static class Settings
     {
 		private static Uri rcpURL;
-
+		/// <summary>
+		/// RPC Url of Geth
+		/// </summary>
 		public static Uri RcpURL
 		{
 			get
@@ -17,6 +19,9 @@
 					if(setting != null)
 					{
 						Settings.rcpURL = new Uri(setting);
+					} else
+					{
+						throw new IndexOutOfRangeException("Unable to find Geth URL in appsettings");
 					}
 				}
 
