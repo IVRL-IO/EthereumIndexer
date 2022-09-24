@@ -1,0 +1,1 @@
+﻿(1..20 | %{ '{0:X}' -f (Get-Random -Max 16) }) -join '' > jwt.hex 
