@@ -18,13 +18,14 @@ builder.Services.AddSwaggerGen(options =>
         {
             Name = "MIT License",
             Url = new Uri("https://opensource.org/licenses/MIT")
+        },
+        Contact = new OpenApiContact
+        {
+            Url = new Uri("https://github.com/IVRL-IO/EthereumIndexer"),
+            Name = "Robert M. Meffe"
+
         }
     });
-
-
-    //// using System.Reflection;
-    //var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    //options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
     // Use method name as operationId
     options.CustomOperationIds(apiDesc =>
@@ -33,9 +34,8 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();

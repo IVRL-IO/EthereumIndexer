@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using RestSharp;
 using System.Text.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace eth_index.Controllers
 {
@@ -35,7 +36,7 @@ namespace eth_index.Controllers
         [Route("[controller]/[action]")]
         public SyningResult? Syncing()
         {
-            var client = new RestClient(new Uri("http://192.168.1.103:8545"));
+            var client = new RestClient(Settings.RcpURL);
             var request = new RestRequest
             {
                 Method = Method.Post
