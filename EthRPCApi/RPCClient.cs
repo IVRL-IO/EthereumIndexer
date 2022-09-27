@@ -33,9 +33,9 @@ namespace EthRPCApi
             var body = JsonSerializer.Serialize(requestRPC); ;
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             RestResponse response = client.Execute(request);
-            if (response?.Content?.Length != 0)
+            if (response.Content != null && response.Content?.Length != 0)
             {
-                return JsonSerializer.Deserialize<T>(response?.Content);
+                return JsonSerializer.Deserialize<T>(response?.Content ?? String.Empty);
 
             }
             return default(T);
@@ -64,12 +64,12 @@ namespace EthRPCApi
             var body = JsonSerializer.Serialize(requestRPC); ;
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             RestResponse response = client.Execute(request);
-            if (response?.Content?.Length != 0)
+            if (response.Content != null && response.Content?.Length != 0)
             {
-                return JsonSerializer.Deserialize<T>(response?.Content);
+                return JsonSerializer.Deserialize<T>(json: response.Content ?? string.Empty);
 
             }
-            return default(T);
+            return default;
         }
     }
 }

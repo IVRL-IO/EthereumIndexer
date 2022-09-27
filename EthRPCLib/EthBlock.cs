@@ -11,7 +11,7 @@ namespace EthRPCLib
     public class EthBlock
     {
         [JsonConstructor]
-        public EthBlock(string baseFeePerGas, string difficulty, string extraData, string gasLimit, string gasUsed, string hash, string logsBloom, string miner, string mixHash, string nonce, string number, string parentHash, string receiptsRoot, string sha3Uncles, string size, string stateRoot, string timestamp, string totalDifficulty, List<string> transactions, string transactionsRoot, List<string> uncles)
+        public EthBlock(string baseFeePerGas, string difficulty, string extraData, string gasLimit, string gasUsed, string hash, string logsBloom, string miner, string mixHash, string nonce, string number, string parentHash, string receiptsRoot, string sha3Uncles, string size, string stateRoot, string timestamp, string totalDifficulty, List<EthTransaction> transactions, string transactionsRoot, List<string> uncles)
         {
             this.baseFeePerGas = baseFeePerGas;
             this.difficulty = difficulty;
@@ -56,7 +56,7 @@ namespace EthRPCLib
         public string stateRoot { get; set; }
         public string timestamp { get; set; }
         public string totalDifficulty { get; set; }
-        public List<string> transactions { get; set; }
+        public List<EthTransaction> transactions { get; set; } = new List<EthTransaction>();
         public string transactionsRoot { get; set; }
         public List<string> uncles { get; set; }
     }

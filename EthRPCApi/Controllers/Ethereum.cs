@@ -52,14 +52,14 @@ namespace eth_index.Controllers
         }
 
         /// <summary>
-        /// Provides Syncing status from Geth RPC
+        /// Provides Syncing status from Geth RPC, if no BlockId is passed in latest block is returned
         /// </summary>
         /// <returns>Returns null if syncing is false otherwise provides <see cref="SyningResult"/></returns>
         [HttpGet()]
         [Route("[controller]/[action]")]
-        public GetBlockByNumberResult GetBlockByNumber(int? BlockId)
+        public GetBlockByNumberResult? GetBlockByNumber(int? BlockId)
         {
-            return new RPCClient<GetBlockByNumberResult>().ExcuteCall(EthRPCMethods.GetBlockByNumber, new object[] { BlockId != null ? BlockId : "latest", false });
+            return new RPCClient<GetBlockByNumberResult>().ExcuteCall(EthRPCMethods.GetBlockByNumber, new object[] { BlockId != null ? BlockId : "latest", true });
         }
 
         /// <summary>
