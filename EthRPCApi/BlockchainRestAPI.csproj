@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
@@ -15,7 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\EthRPCLib\EthRPCLib.csproj" />
+		<ProjectReference Include="..\EthRPCLib\EthereumClientLibrary.csproj" />
 	</ItemGroup>
 
 </Project>

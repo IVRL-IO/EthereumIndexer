@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eth_rpc_lib
+namespace EthereumClientLibrary
 {
-    public class WebRPCMethods
+    public class WebMethods
     {
         public const string ClientVersion = "eth_clientVersion";
         public const string Sha3 = "eth_sha3";

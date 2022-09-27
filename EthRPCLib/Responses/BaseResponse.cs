@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace eth_rpc_lib
+namespace EthereumClientLibrary
 {
-    public class RPCBaseResponse<T>: IRPCResult<T>
+    public class BaseResponse<T>: IResponse<T>
     {
 
         [JsonPropertyName("jsonrpc")]

@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace eth_rpc_lib
+namespace EthereumClientLibrary
 {
-    public interface IRPCRequest
+    public interface IRequest
     {
         [JsonPropertyName("jsonrpc")]
         public string Jsonrpc { get; set; }

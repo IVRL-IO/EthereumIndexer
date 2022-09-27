@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace eth_rpc_lib
+namespace EthereumClientLibrary
 {
-    public class RPCBaseRequest
+    public class BaseRequest: IRequest
     {
         /// <summary>
         /// Defaults to 2.0
@@ -16,13 +16,13 @@ namespace eth_rpc_lib
         public string Jsonrpc { get; set; } = "2.0";
 
         [JsonPropertyName("method")]
-        public string Method { get; set; }
+        public string Method { get; set; } = string.Empty;
 
         [JsonPropertyName("params")]
-        public List<object>? Params { get; set; }
-         
+        public List<object>? Params { get; set; } = new List<Object>();
+
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public int Id { get; set; } = new Random(Environment.CurrentManagedThreadId).Next();
     }
 
 

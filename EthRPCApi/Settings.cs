@@ -1,4 +1,4 @@
-﻿namespace EthRPCApi
+﻿namespace BlockchainRestAPI
 {
 	/// <summary>
 	/// Wrapper for appsettings.json

@@ -1,14 +1,15 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace eth_rpc_lib
+namespace EthereumClientLibrary
 {
-    public interface IRPCResult<T>
+    public interface IResponse<T>
     {
         [JsonPropertyName("jsonrpc")]
         public string Jsonrpc { get; set; }
 
         [JsonPropertyName("id")]
         public int Id { get; set; }
+
         [JsonPropertyName("result")]
         public T Result { get; set; }
     }

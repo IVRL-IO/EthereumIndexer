@@ -1,20 +1,19 @@
-﻿using eth_rpc_lib;
-using EthRPCLib;
+﻿using EthereumClientLibrary;
 using RestSharp;
 using System.Text.Json;
 
-namespace EthRPCApi
+namespace BlockchainRestAPI
 {
     /// <summary>
     /// 
     /// </summary>
     /// <typeparam name="T">Response type</typeparam>
-    public class RPCClient<T>
+    public class EthereumClient<T>
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="MethodName"><seealso cref="EthRPCMethods"/><seealso cref="NetRPCMethods"/><seealso cref="WebRPCMethods"/></param>
+        /// <param name="MethodName"><seealso cref="EthMethods"/><seealso cref="NetMethods"/><seealso cref="WebMethods"/></param>
         /// <returns></returns>
         public T? ExcuteCall(string MethodName)
         {
@@ -24,7 +23,7 @@ namespace EthRPCApi
                 Method = Method.Post
             };
             request.AddHeader("Content-Type", "application/json");
-            var requestRPC = new RPCBaseRequest
+            var requestRPC = new BaseRequest
             {
                 Method = MethodName,
                 Id = 1
@@ -54,7 +53,7 @@ namespace EthRPCApi
                 Method = Method.Post
             };
             request.AddHeader("Content-Type", "application/json");
-            var requestRPC = new RPCBaseRequest
+            var requestRPC = new BaseRequest
             {
                 Method = MethodName,
                 Id = 1,

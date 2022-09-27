@@ -1,13 +1,12 @@
-using eth_rpc_lib;
-using EthRPCApi;
+using EthereumClientLibrary;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using RestSharp;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
-using EthRPCLib;
+using BlockchainRestAPI;
 
-namespace eth_index.Controllers
+namespace BlockchainRestAPI.Controllers
 {
     /// <summary>
     /// 
@@ -35,9 +34,9 @@ namespace eth_index.Controllers
         /// <returns>Returns null if syncing is false otherwise provides <see cref="SyningResult"/></returns>
         [HttpGet()]
         [Route("[controller]/[action]")]
-        public RPCBaseResponse<SyningResult?>? Syncing()
+        public BaseResponse<SyningResult?>? Syncing()
         {
-            return new RPCClient<RPCBaseResponse<SyningResult?>?>().ExcuteCall(EthRPCMethods.Syncing);
+            return new EthereumClient<BaseResponse<SyningResult?>?>().ExcuteCall(EthMethods.Syncing);
         }
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace eth_index.Controllers
         [Route("[controller]/[action]")]
         public BlockNumberResult? BlockNumber()
         {
-            return new RPCClient<BlockNumberResult?>().ExcuteCall(EthRPCMethods.BlockNumber);
+            return new EthereumClient<BlockNumberResult?>().ExcuteCall(EthMethods.BlockNumber);
         }
 
         /// <summary>
@@ -57,9 +56,31 @@ namespace eth_index.Controllers
         /// <returns>Returns null if syncing is false otherwise provides <see cref="SyningResult"/></returns>
         [HttpGet()]
         [Route("[controller]/[action]")]
-        public GetBlockByNumberResult? GetBlockByNumber(int? BlockId)
+        public GetBlockByNumberResponse? GetBlockByNumber(int? BlockId)
         {
-            return new RPCClient<GetBlockByNumberResult>().ExcuteCall(EthRPCMethods.GetBlockByNumber, new object[] { BlockId != null ? BlockId : "latest", true });
+            return new EthereumClient<GetBlockByNumberResponse>().ExcuteCall(EthMethods.GetBlockByNumber, new object[] { BlockId != null ? BlockId : "latest", true });
+        }
+
+        /// <summary>
+        /// Provides wallet balance
+        /// </summary>
+        /// <returns>Returns null if syncing is false otherwise provides <see cref="SyningResult"/></returns>
+        [HttpGet()]
+        [Route("[controller]/[action]")]
+        public BaseResponse<int>? GetWalletBalance(string Address)
+        {
+            return new EthereumClient<BaseResponse<int>>().ExcuteCall(EthMethods.GetBalance, new object[] { "0x8D97689C9818892B700e27F316cc3E41e17fBeb9", "latest" });
+        }
+
+        /// <summary>
+        /// Provides Syncing status from Geth RPC, if no BlockId is passed in latest block is returned
+        /// </summary>
+        /// <returns>Returns null if syncing is false otherwise provides <see cref="SyningResult"/></returns>
+        [HttpGet()]
+        [Route("[controller]/[action]")]
+        public int? GetWalletBalances(string Address)
+        {
+            return new EthereumClient<int>().ExcuteCall(EthMethods.GetBalance, new object[] { "0x8D97689C9818892B700e27F316cc3E41e17fBeb9", "latest" });
         }
 
         /// <summary>

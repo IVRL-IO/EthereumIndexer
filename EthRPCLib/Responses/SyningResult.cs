@@ -1,4 +1,4 @@
-﻿namespace eth_rpc_lib
+﻿namespace EthereumClientLibrary
 {
     public class SyningResult
     {

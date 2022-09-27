@@ -1,6 +1,6 @@
 ﻿using static System.Net.WebRequestMethods;
 
-namespace EthRPCApi
+namespace BlockchainRestAPI
 {
     /// <summary>
     /// Exception if currentBlock = 0x0 and syncing is false.<see href="https://ethereum.org/en/developers/docs/nodes-and-clients/"/>
@@ -10,6 +10,6 @@ namespace EthRPCApi
         /// <summary>
         /// Information on how to fix the exception
         /// </summary>
-        public override string Message => " Ethereum consensus client missing";
+        public override string Message => "Ethereum consensus client missing";
     }
 }

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eth_rpc_lib
+namespace EthereumClientLibrary
 {
     /// <summary>
     /// All Methods in the eth namespace.
     /// </summary>
-    public static class EthRPCMethods
+    public static class EthMethods
     {
         public const string Accounts = "eth_accounts";
         public const string BlockNumber = "eth_blockNumber";

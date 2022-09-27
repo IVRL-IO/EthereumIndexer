@@ -1,4 +1,4 @@
-﻿using eth_rpc_lib;
+﻿using EthereumClientLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,15 +6,15 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace EthRPCLib
+namespace EthereumClientLibrary
 {
     /// <summary>
     /// 
     /// </summary>
-    public class GetBlockByNumberResult : RPCBaseResponse<EthBlock>
+    public class GetBlockByNumberResponse : BaseResponse<Block>
     {
         [JsonConstructor]
-        public GetBlockByNumberResult()
+        public GetBlockByNumberResponse()
         {
         }
     }
