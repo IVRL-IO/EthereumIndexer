@@ -11,8 +11,8 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "Ethereum RPC Service",
-        Description = "Wrapper for Ethereum RPC API",
+        Title = "Blockchain Indexing",
+        Description = "Wrapper for EVM Blockchains",
         TermsOfService = new Uri("https://ivrl.io/terms"),
         License = new OpenApiLicense
         {
@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen(options =>
         Contact = new OpenApiContact
         {
             Url = new Uri("https://github.com/IVRL-IO/EthereumIndexer"),
-            Name = "Robert M. Meffe"
+            Name = "Robert M. Meffe",
 
         }
     });

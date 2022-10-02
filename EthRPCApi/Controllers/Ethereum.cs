@@ -12,7 +12,7 @@ namespace BlockchainRestAPI.Controllers
     /// 
     /// </summary>
     [ApiController]
-    [Route("[controller]", Name ="eth_syncing")]
+    [Route("api", Name ="API")]
     [Produces("application/json")]
     public class Ethereum : ControllerBase
     {
@@ -73,7 +73,7 @@ namespace BlockchainRestAPI.Controllers
         }
 
         /// <summary>
-        /// Provides Syncing status from Geth RPC, if no BlockId is passed in latest block is returned
+        /// Returns balances from all sources (NFT's, alt coins, etc)
         /// </summary>
         /// <returns>Returns null if syncing is false otherwise provides <see cref="SyningResult"/></returns>
         [HttpGet()]

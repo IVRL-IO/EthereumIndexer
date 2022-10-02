@@ -15,7 +15,10 @@ namespace EthereumClientLibrary
 
         [JsonPropertyName("id")]
         public int Id { get; set; }
+
         [JsonPropertyName("result")]
-        public T Result { get; set; }
+#pragma warning disable CS8601 // Possible null reference assignment.
+        public T Result { get; set; } = default;
+#pragma warning restore CS8601 // Possible null reference assignment.
     }
 }
